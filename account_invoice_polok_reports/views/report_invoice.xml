@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <template id="report_invoice_document_polok" inherit_id="account.report_invoice_document">
+
+        <xpath expr="//t[@t-set='address']" position="replace">
+          <div class="row">
+                <div class="col-5">
+                  <span>
+                  <div><b>NIT 900.163.167-5</b><br/>Factura generada por computador - Iva régimen común - No somos autoretenedores Autorización DIAN No. 18762015625016 Fecha 2019/07/10 del 17460 al 20000 Código CIIU 46</div>
+                  </span>
+                </div>
+                <div class="col-5 offset-2">
+                  <div t-if="o.partner_id.vat" class="mt16"><t t-esc="o.company_id.country_id.vat_label or 'Tax ID'"/>: <span t-field="o.partner_id.vat"/></div>
+                  <address t-field="o.partner_id" t-options-widget="'contact'"/>
+                </div>
+          </div>
+        </xpath>
+
+    </template>
+
+</odoo>
