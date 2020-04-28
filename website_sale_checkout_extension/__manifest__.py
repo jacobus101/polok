@@ -5,7 +5,7 @@
     'summary': 'Extension bringing city dropdown into checkout process',
     'version': '12.0.1.1.0',
     'category': 'Website',
-    'author': 'Santiago Lopez',
+    'author': 'Santiago López',
     'license': 'LGPL-3',
     'application': False,
     'installable': True,
@@ -13,9 +13,6 @@
         'website_sale',
     ],
     'data': [
-        'views/assets.xml',
-        'views/website_sale_skip_payment.xml',
-        'views/website_sale_template.xml',
-        'views/partner_view.xml',
+        'views/website_sale_checkout_city.xml'
     ],
 }
