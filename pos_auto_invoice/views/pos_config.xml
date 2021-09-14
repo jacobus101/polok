@@ -9,8 +9,6 @@
                 <xpath expr="//div[@id='company']" position="after">
                     <group>
                         <field name="pos_auto_invoice"/>
-                        <field name="receipt_invoice_number"/>
-                        <field name="receipt_customer_vat"/>
                     </group>
                 </xpath>
             </field>
