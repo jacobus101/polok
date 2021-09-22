@@ -18,9 +18,6 @@
         'template/import_library.xml',
         'views/pos_config.xml',
     ],
-    'qweb': [
-        'static/src/xml/*.xml'
-    ],
     "currency": 'USD',
     "external_dependencies": {
         "python": [],
