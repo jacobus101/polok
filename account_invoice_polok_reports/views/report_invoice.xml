@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
-  <template id="extexnal_layout_standard_polok" inherit_id="web.external_layout_standard_polok">
+  <template id="extexnal_layout_standard_polok" inherit_id="web.external_layout_standard">
     <xpath expr="//div[@class='header']" position="replace">
       <div class="header" t-att-style="report_header_style">
         <div class="row">
