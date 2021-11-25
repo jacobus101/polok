@@ -54,8 +54,8 @@
               </div>
             </div>
             <div class="col-4">
-              <h4 t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Customer</h4>
-              <h4 t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Supplier</h4>
+              <p t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Customer</p>
+              <p t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Supplier</p>
               <div t-if="o.partner_id.vat">
                   <span t-if="o.partner_id.l10n_co_document_type == 'civil_registration'">R.C.:</span>
                   <span t-if="o.partner_id.l10n_co_document_type == 'id_card'">T.I.:</span>
