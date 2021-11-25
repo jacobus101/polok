@@ -79,27 +79,26 @@
       <xpath expr="//div[@id='informations']" position="replace">
         <div id="informations" class="row" style="font-size:11px;">
           <div t-if="o.ei_is_not_test and o.ei_qr_data" class="col-2">
-            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.ei_qr_data, 80, 80)"/>
+            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.ei_qr_data, 120, 120)"/>
           </div>
           <div class="col-10">
-            <div t-if="o.ei_is_valid">
+            <span t-if="o.ei_is_valid">
               <strong t-if="o.type == 'out_invoice' and not o.debit_invoice_id.id">CUFE:</strong>
               <strong t-if="o.type == 'out_invoice' and o.debit_invoice_id.id">CUDE:</strong>
               <strong t-if="o.type == 'out_refund'">CUDE:</strong>
               <span t-field="o.ei_uuid"/>
-            </div>
-            <div t-else="">
+            </span>
+            <span t-else="">
                 <span>This document has not been validated in the DIAN</span>
-            </div>
-            <div t-if="o.ei_signature">
+            </span>
+            <span t-if="o.ei_signature">
                 <strong>Signature:</strong>
                 <span t-field="o.ei_signature"/>
-            </div>
+            </span>
             <strong>Invoicing authorization number:</strong>
             <span t-field="o.journal_id.sequence_id.resolution_id.resolution_resolution"/>
             <strong>Date:</strong>
             <span t-field="o.journal_id.sequence_id.resolution_id.resolution_resolution_date"/>
-            <br/>
             <strong>Authorized range from:</strong>
             <span t-field="o.journal_id.sequence_id.resolution_id.resolution_prefix"/>
             <span t-field="o.journal_id.sequence_id.resolution_id.resolution_from"/>
@@ -110,7 +109,6 @@
             <span t-field="o.journal_id.sequence_id.resolution_id.resolution_date_from"/>
             <strong>to</strong>
             <span t-field="o.journal_id.sequence_id.resolution_id.resolution_date_to"/>
-            <br/>
             <strong>Graphic representation of electronic invoicing printed by computer with own
                 software by
             </strong>
