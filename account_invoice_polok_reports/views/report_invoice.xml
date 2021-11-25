@@ -18,17 +18,7 @@
     </xpath> 
   </template>
   <template id="report_invoice_document_polok" inherit_id="l10n_co_edi_jorels.report_invoice_document_custom">
-      <xpath expr="//t[@t-set='address']" position="replace">
-        <t t-set="address" t-if="not o.env.user.company_id.ei_enable">
-          <address t-field="o.partner_id"
-                    t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
-          <div t-if="o.partner_id.vat" class="mt16">
-              <t t-if="o.company_id.country_id.vat_label" t-esc="o.company_id.country_id.vat_label"
-                  id="inv_tax_id_label"/>
-              <t t-else="">Tax ID</t>:
-              <span t-field="o.partner_id.vat"/>
-          </div>
-        </t>
+      <xpath expr="//div[@class='container']" position="replace">
         <div class="container" t-if="o.env.user.company_id.ei_enable">
           <div class="row" style="font-size:11px;">
             <div class="col-4">
