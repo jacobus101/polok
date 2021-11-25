@@ -24,12 +24,13 @@
             <div class="col-4">
               <span t-field="o.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
               <span t-field="o.company_id.vat"/>
-              <br/>
-              <strong>Tipo de organización: </strong><span t-field="o.company_id.type_organization_id"/>
-              <strong>Tipo de regimen: </strong><span t-field="o.company_id.type_regime_id"/>
-              <strong>Tipo de responsabilidad:</strong><span t-field="o.company_id.type_liability_id"/>
-              <br/>
-              <span t-field="o.company_id.report_custom_text"/>
+              <div style="font-size:11px;">
+                <strong>Tipo de organización: </strong><span t-field="o.company_id.type_organization_id"/>
+                <strong>Tipo de regimen: </strong><span t-field="o.company_id.type_regime_id"/>
+                <strong>Tipo de responsabilidad:</strong><span t-field="o.company_id.type_liability_id"/>
+                <br/>
+                <span t-field="o.company_id.report_custom_text"/>
+              </div>
             </div>
 
             <div class="col-4">
@@ -51,7 +52,7 @@
               <address t-field="o.partner_id"
                         t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
             </div>
-            <div class="col-4">
+            <div class="col-4" style="font-size:11px;">
               <strong>Description:</strong>
               <p class="m-0" t-field="o.name"/>
               <strong>Invoice Date:</strong>
