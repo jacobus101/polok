@@ -32,7 +32,7 @@
         <div class="container" t-if="o.env.user.company_id.ei_enable">
           <div class="row" style="font-size:11px;">
             <div class="col-4">
-              <span t-field="company.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+              <span t-field="o.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
               <span t-field="o.company_id.vat"/>
               Tipo de organización: <span t-field="o.company_id.type_organization_id"/>        
               Tipo de regimen: <span t-field="o.company_id.type_regime_id"/>
