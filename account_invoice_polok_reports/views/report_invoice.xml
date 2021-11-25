@@ -20,21 +20,21 @@
   <template id="report_invoice_document_polok" inherit_id="l10n_co_edi_jorels.report_invoice_document_custom">
       <xpath expr="//div[@class='container']" position="replace">
         <div class="container" t-if="o.env.user.company_id.ei_enable">
-          <div class="row" style="font-size:11px;">
+          <div class="row">
             <div class="col-4">
               <span t-field="o.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
               <span t-field="o.company_id.vat"/>
-              Tipo de organización: <span t-field="o.company_id.type_organization_id"/>
-              Tipo de regimen: <span t-field="o.company_id.type_regime_id"/>
-              Tipo de responsabilidad:
-              <span t-field="o.company_id.type_liability_id"/>
+              <br/>
+              <strong>Tipo de organización: </strong><span t-field="o.company_id.type_organization_id"/>
+              <strong>Tipo de regimen: </strong><span t-field="o.company_id.type_regime_id"/>
+              <strong>Tipo de responsabilidad:</strong><span t-field="o.company_id.type_liability_id"/>
               <br/>
               <span t-field="o.company_id.report_custom_text"/>
             </div>
 
             <div class="col-4">
-              <span t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Customer</span>
-              <span t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Supplier</span>
+              <strong t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Cliente</strong>
+              <strong t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Proveedor</strong>
               <div t-if="o.partner_id.vat">
                   <span t-if="o.partner_id.l10n_co_document_type == 'civil_registration'">R.C.:</span>
                   <span t-if="o.partner_id.l10n_co_document_type == 'id_card'">T.I.:</span>
@@ -73,6 +73,16 @@
                   <p class="m-0" t-field="o.reference"/>
               </div>
             </div>
+          </div>
+        </div>
+      </xpath>
+      <xpath expr="//div[@id='informations']" position="replace">
+        <div id="informations" class="row" style="font-size:11px;">
+          <div t-if="o.ei_is_not_test and o.ei_qr_data" class="col-2">
+            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.ei_qr_data, 150, 150)"/>
+          </div>
+          <div class="col-10">
+
           </div>
         </div>
       </xpath>
