@@ -64,42 +64,23 @@
               </div>
             </div>
             <div class="col-4">
-              <h4 t-if="o.move_type == 'out_invoice' or o.move_type == 'out_refund'">Cliente</h4>
-                  <h4 t-if="o.move_type == 'in_invoice' or o.move_type == 'in_refund'">Proveedor</h4>
-                  <div t-if="o.partner_id.vat" class="mt16">
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'civil_registration'">
-                          R.C.:
-                      </span>
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'id_card'">
-                          T.I.:
-                      </span>
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'id_document'">
-                          C.C.:
-                      </span>
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'national_citizen_id'">
-                          C.C.:
-                      </span>
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'residence_document'">
-                          T.E.:
-                      </span>
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'foreign_id_card'">
-                          C.E.:
-                      </span>
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'rut'">
-                          NIT:
-                      </span>
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'passport'">
-                          PAS:
-                      </span>
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'external_id'">
-                          D.I.E.:
-                      </span>
-                      <span t-if="o.partner_id.l10n_latam_identification_type_id.l10n_co_document_code == 'diplomatic_card'">
-                          Tax ID:
-                      </span>
-                      <span t-field="o.partner_id.vat"/>
-                  </div>
-                    <address t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
+              <h4 t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Customer</h4>
+              <h4 t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Supplier</h4>
+              <div t-if="o.partner_id.vat">
+                  <span t-if="o.partner_id.l10n_co_document_type == 'civil_registration'">R.C.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'id_card'">T.I.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'id_document'">C.C.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'national_citizen_id'">C.C.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'residence_document'">T.E.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'foreign_id_card'">C.E.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'rut'">NIT:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'passport'">PAS:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'external_id'">D.I.E.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'diplomatic_card'">Tax ID:</span>
+                  <span t-field="o.partner_id.vat"/>
+              </div>
+              <address t-field="o.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
             </div>
           </div>
         </div>
