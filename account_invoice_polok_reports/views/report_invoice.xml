@@ -62,24 +62,24 @@
           <div class="col-10">
             <strong>Description:</strong>
             <span t-field="o.name"/>
-            <strong>Invoice Date:</strong>
+            <strong>Fecha de factura:</strong>
             <span t-field="o.date_invoice"/>
-            <div t-if="o.date_due and o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')" name="due_date">
+            <span t-if="o.date_due and o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')" name="due_date">
                 <strong>Due Date:</strong>
                 <span t-field="o.date_due"/>
-            </div>
-            <div t-if="o.origin" name="origin">
+            </span>
+            <span t-if="o.origin" name="origin">
                 <strong>Source:</strong>
                 <span t-field="o.origin"/>
-            </div>
-            <div t-if="o.partner_id.ref" name="customer_code">
+            </span>
+            <span t-if="o.partner_id.ref" name="customer_code">
                 <strong>Customer Code:</strong>
                 <span t-field="o.partner_id.ref"/>
-            </div>
-            <div name="reference" t-if="o.reference">
+            </span>
+            <span name="reference" t-if="o.reference">
                 <strong>Reference:</strong>
                 <span t-field="o.reference"/>
-            </div>
+            </span>
             <span t-if="o.ei_is_valid">
               <strong t-if="o.type == 'out_invoice' and not o.debit_invoice_id.id">CUFE:</strong>
               <strong t-if="o.type == 'out_invoice' and o.debit_invoice_id.id">CUDE:</strong>
