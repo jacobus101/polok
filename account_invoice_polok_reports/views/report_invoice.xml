@@ -19,7 +19,7 @@
   </template>
   <template id="report_invoice_document_polok" inherit_id="account.report_invoice_document">
       <xpath expr="//t[@t-set='address']" position="replace">
-        <t t-set="address" t-if="not o.env.company.ei_enable">
+        <t t-set="address" t-if="not o.env.user.company_id.ei_enable">
           <address t-field="o.partner_id"
                     t-options='{"widget": "contact", "fields": ["address", "name"], "no_marker": True}'/>
           <div t-if="o.partner_id.vat" class="mt16">
@@ -29,7 +29,7 @@
               <span t-field="o.partner_id.vat"/>
           </div>
         </t>
-        <div class="container" t-if="o.env.company.ei_enable">
+        <div class="container" t-if="o.env.user.company_id.ei_enable">
           <div class="row" style="font-size:11px;">
             <div class="col-4">
               <span t-field="company.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
