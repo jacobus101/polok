@@ -17,7 +17,7 @@
     </div>
     </xpath> 
   </template>
-  <template id="report_invoice_document_polok" inherit_id="account.report_invoice_document">
+  <template id="report_invoice_document_polok" inherit_id="l10n_co_edi_jorels.report_invoice_document_custom">
       <xpath expr="//t[@t-set='address']" position="replace">
         <t t-set="address" t-if="not o.env.user.company_id.ei_enable">
           <address t-field="o.partner_id"
