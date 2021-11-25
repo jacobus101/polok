@@ -24,18 +24,38 @@
             <div class="col-4">
               <span t-field="o.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
               <span t-field="o.company_id.vat"/>
-              Tipo de organización: <span t-field="o.company_id.type_organization_id"/>        
+              Tipo de organización: <span t-field="o.company_id.type_organization_id"/>
               Tipo de regimen: <span t-field="o.company_id.type_regime_id"/>
               Tipo de responsabilidad:
               <span t-field="o.company_id.type_liability_id"/>
               <br/>
               <span t-field="o.company_id.report_custom_text"/>
             </div>
+
             <div class="col-4">
-                  <strong>Description:</strong>
-                  <p class="m-0" t-field="o.name"/>
-                  <strong>Invoice Date:</strong>
-                  <p class="m-0" t-field="o.date_invoice"/>
+              <span t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Customer</span>
+              <span t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Supplier</span>
+              <div t-if="o.partner_id.vat">
+                  <span t-if="o.partner_id.l10n_co_document_type == 'civil_registration'">R.C.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'id_card'">T.I.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'id_document'">C.C.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'national_citizen_id'">C.C.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'residence_document'">T.E.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'foreign_id_card'">C.E.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'rut'">NIT:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'passport'">PAS:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'external_id'">D.I.E.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'diplomatic_card'">Tax ID:</span>
+                  <span t-field="o.partner_id.vat"/>
+              </div>
+              <address t-field="o.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
+            </div>
+            <div class="col-4">
+              <strong>Description:</strong>
+              <p class="m-0" t-field="o.name"/>
+              <strong>Invoice Date:</strong>
+              <p class="m-0" t-field="o.date_invoice"/>
               <div t-if="o.date_due and o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')" name="due_date">
                   <strong>Due Date:</strong>
                   <p class="m-0" t-field="o.date_due"/>
@@ -52,25 +72,6 @@
                   <strong>Reference:</strong>
                   <p class="m-0" t-field="o.reference"/>
               </div>
-            </div>
-            <div class="col-4">
-              <p t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Customer</p>
-              <p t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Supplier</p>
-              <div t-if="o.partner_id.vat">
-                  <span t-if="o.partner_id.l10n_co_document_type == 'civil_registration'">R.C.:</span>
-                  <span t-if="o.partner_id.l10n_co_document_type == 'id_card'">T.I.:</span>
-                  <span t-if="o.partner_id.l10n_co_document_type == 'id_document'">C.C.:</span>
-                  <span t-if="o.partner_id.l10n_co_document_type == 'national_citizen_id'">C.C.:</span>
-                  <span t-if="o.partner_id.l10n_co_document_type == 'residence_document'">T.E.:</span>
-                  <span t-if="o.partner_id.l10n_co_document_type == 'foreign_id_card'">C.E.:</span>
-                  <span t-if="o.partner_id.l10n_co_document_type == 'rut'">NIT:</span>
-                  <span t-if="o.partner_id.l10n_co_document_type == 'passport'">PAS:</span>
-                  <span t-if="o.partner_id.l10n_co_document_type == 'external_id'">D.I.E.:</span>
-                  <span t-if="o.partner_id.l10n_co_document_type == 'diplomatic_card'">Tax ID:</span>
-                  <span t-field="o.partner_id.vat"/>
-              </div>
-              <address t-field="o.partner_id"
-                        t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
             </div>
           </div>
         </div>
