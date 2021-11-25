@@ -21,7 +21,7 @@
       <xpath expr="//div[@class='container']" position="replace">
         <div class="container" t-if="o.env.user.company_id.ei_enable">
           <div class="row">
-            <div class="col-4">
+            <div class="col-6">
               <span t-field="o.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
               <span t-field="o.company_id.vat"/>
               <div style="font-size:11px;">
@@ -32,29 +32,7 @@
                 <span t-field="o.company_id.report_custom_text"/>
               </div>
             </div>
-            <div class="col-4" style="font-size:11px;">
-              <strong>Description:</strong>
-              <p class="m-0" t-field="o.name"/>
-              <strong>Invoice Date:</strong>
-              <p class="m-0" t-field="o.date_invoice"/>
-              <div t-if="o.date_due and o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')" name="due_date">
-                  <strong>Due Date:</strong>
-                  <p class="m-0" t-field="o.date_due"/>
-              </div>
-              <div t-if="o.origin" name="origin">
-                  <strong>Source:</strong>
-                  <p class="m-0" t-field="o.origin"/>
-              </div>
-              <div t-if="o.partner_id.ref" name="customer_code">
-                  <strong>Customer Code:</strong>
-                  <p class="m-0" t-field="o.partner_id.ref"/>
-              </div>
-              <div name="reference" t-if="o.reference">
-                  <strong>Reference:</strong>
-                  <p class="m-0" t-field="o.reference"/>
-              </div>
-            </div>
-            <div class="col-4">
+            <div class="col-6">
               <strong t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Cliente</strong>
               <strong t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Proveedor</strong>
               <div t-if="o.partner_id.vat">
