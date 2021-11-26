@@ -57,7 +57,7 @@
         </div>
       </xpath>
       <xpath expr="//div[@id='informations']" position="replace">
-        <div id="informations" class="row mt16" style="font-size:11px;">
+        <div id="informations" class="row mt32" style="font-size:11px;">
           <div t-if="o.ei_is_not_test and o.ei_qr_data" class="col-2">
             <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.ei_qr_data, 120, 120)"/>
           </div>
