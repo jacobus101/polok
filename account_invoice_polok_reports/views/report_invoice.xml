@@ -27,7 +27,9 @@
             </div>
             <div class="col-5" style="font-size:11px;">
               <strong>Tipo de organización: </strong><span t-field="o.company_id.type_organization_id"/>
+              <br/>
               <strong>Tipo de regimen: </strong><span t-field="o.company_id.type_regime_id"/>
+              <br/>
               <strong>Tipo de responsabilidad:</strong><span t-field="o.company_id.type_liability_id"/>
               <br/>
               <span t-field="o.company_id.report_custom_text"/>
