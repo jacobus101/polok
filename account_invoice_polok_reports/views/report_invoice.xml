@@ -116,7 +116,7 @@
           </div>
         </div>
       </xpath>
-      <xpath expr="//div[@class='container'][2]" position='replace'>
+      <xpath expr="//div[@class='container']" position='replace'>
       </xpath>
   </template>
 </odoo>
