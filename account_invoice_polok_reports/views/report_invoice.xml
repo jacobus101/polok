@@ -34,7 +34,7 @@
               <br/>
               <span t-field="o.company_id.report_custom_text"/>
             </div>
-            <div class="col-5">
+            <div class="col-5"  style="font-size:11px;">
               <strong t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Cliente</strong>
               <strong t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Proveedor</strong>
               <div t-if="o.partner_id.vat">
