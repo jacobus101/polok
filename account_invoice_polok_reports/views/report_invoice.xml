@@ -116,7 +116,7 @@
           </div>
         </div>
       </xpath>
-      <xpath expr="//div[2][@class='container']" position='replace'>
+      <xpath expr="//div[@class='mt16 text-center']" position='replace'>
       </xpath>
   </template>
 </odoo>
