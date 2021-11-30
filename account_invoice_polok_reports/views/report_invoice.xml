@@ -17,7 +17,7 @@
     </div>
     </xpath> 
   </template>
-  <template id="report_invoice_document_custom_polok" inherit_id="l10n_co_edi_jorels.report_invoice_document_custom">
+  <template id="report_invoice_document_polok" inherit_id="l10n_co_edi_jorels.report_invoice_document_custom">
       <xpath expr="//div[@class='container']" position="replace">
         <div class="container" t-if="o.env.user.company_id.ei_enable">
           <div class="row mb32">
@@ -120,7 +120,7 @@
       <xpath expr="//div[@class='mt16 text-center']" position='replace'>
       </xpath>
   </template>
-  <template id="report_invoice_document_polok" inherit_id="account.report_invoice_document">
+  <template id="report_invoice_document_polok_2" inherit_id="account.report_invoice_document">
     <xpath expr="//td[@class='text-right o_price_total'" position='replace'>
       <span class="text-nowrap" t-field="line.price_subtotal"/>
     </xpath>
