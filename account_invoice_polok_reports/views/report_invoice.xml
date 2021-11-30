@@ -122,7 +122,9 @@
   </template>
   <template id="report_invoice_document_polok_2" inherit_id="account.report_invoice_document">
     <xpath expr="//td[@class='text-right o_price_total'" position='replace'>
-      <span class="text-nowrap" t-field="line.price_subtotal"/>
+      <td class="text-right o_price_total">
+        <span class="text-nowrap" t-field="line.price_subtotal"/>
+      </td>
     </xpath>
   </template>
 </odoo>
