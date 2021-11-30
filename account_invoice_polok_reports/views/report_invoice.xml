@@ -62,26 +62,27 @@
             <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.ei_qr_data, 120, 120)"/>
           </div>
           <div class="col-10">
-            <strong>Description:</strong>
-            <span t-field="o.name"/>
             <strong>Fecha de factura:</strong>
             <span t-field="o.date_invoice"/>
             <span t-if="o.date_due and o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')" name="due_date">
                 <strong>Due Date:</strong>
                 <span t-field="o.date_due"/>
             </span>
+            <strong>Descripción:</strong>
+            <span t-field="o.name"/>
             <span t-if="o.origin" name="origin">
-                <strong>Source:</strong>
+                <strong>Origen:</strong>
                 <span t-field="o.origin"/>
             </span>
             <span t-if="o.partner_id.ref" name="customer_code">
-                <strong>Customer Code:</strong>
+                <strong>Código cliente:</strong>
                 <span t-field="o.partner_id.ref"/>
             </span>
             <span name="reference" t-if="o.reference">
-                <strong>Reference:</strong>
+                <strong>Referencia:</strong>
                 <span t-field="o.reference"/>
             </span>
+            <br/>
             <span t-if="o.ei_is_valid">
               <strong t-if="o.type == 'out_invoice' and not o.debit_invoice_id.id">CUFE:</strong>
               <strong t-if="o.type == 'out_invoice' and o.debit_invoice_id.id">CUDE:</strong>
@@ -117,6 +118,9 @@
         </div>
       </xpath>
       <xpath expr="//div[@class='mt16 text-center']" position='replace'>
+      </xpath>
+      <xpath expr="//td[@class='text-right o_price_total'" position='replace'>
+        <span class="text-nowrap" t-field="line.price_subtotal"/>
       </xpath>
   </template>
 </odoo>
