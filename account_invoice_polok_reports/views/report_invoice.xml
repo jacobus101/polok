@@ -126,5 +126,8 @@
         <span class="text-nowrap" t-field="line.price_subtotal"/>
       </td>
     </xpath>
+    <xpath expr="//table[@class='table table-sm o_main_table']" position="attributes">
+      <attribute name="style">font-size:11px;</attribute>
+    </xpath>
   </template>
 </odoo>
