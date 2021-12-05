@@ -6,6 +6,7 @@ odoo.define('l10n_co_edi_jorels_pos_patch', function(require) {
     var field_utils = require("web.field_utils");
 
     var PosModelSuper = models.PosModel.prototype;
+
     models.PosModel = models.PosModel.extend({
         push_and_invoice_order: function (order) {
             var self = this;
@@ -61,12 +62,6 @@ odoo.define('l10n_co_edi_jorels_pos_patch', function(require) {
                 return done;
             });
             return invoiced;
-        },
-        set_to_electronic_invoice: function(to_electronic_invoice) {
-            this.to_electronic_invoice = to_electronic_invoice;
-        },
-        is_to_electronic_invoice: function(){
-            return this.to_electronic_invoice;
         },
     });
 
