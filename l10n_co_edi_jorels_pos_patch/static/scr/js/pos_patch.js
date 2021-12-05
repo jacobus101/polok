@@ -1,17 +1,12 @@
 odoo.define('l10n_co_edi_jorels_pos_patch', function(require) {
     "use strict";
 
-    var PosDB = require('point_of_sale.DB');
-    var core = require('web.core');
-    var exports = require('point_of_sale.models');
-    var gui = require('point_of_sale.gui');
-    var screens = require('point_of_sale.screens');
-    var _t = core._t;
-    var rpc = require('web.rpc');
+    var rpc = require("web.rpc");
+    var models = require("point_of_sale.models");
+    var field_utils = require("web.field_utils");
 
-    var models = exports.PosModel.prototype.models;
-
-    exports.PosModel = exports.PosModel.extend({
+    var PosModelSuper = models.PosModel.prototype;
+    models.PosModel = models.PosModel.extend({
         push_and_invoice_order: function (order) {
             var self = this;
             var invoiced = new $.Deferred();
