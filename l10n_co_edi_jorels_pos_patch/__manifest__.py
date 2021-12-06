@@ -12,7 +12,7 @@
         'views/pos_assets.xml'
     ],
     'qweb': [
-        'static/scr/xml/pos.xml'
+        'static/src/xml/pos.xml'
     ],
     'installable': True,
 }
