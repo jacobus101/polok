@@ -11,8 +11,8 @@ odoo.define('pos_auto_invoice.pos_auto_invoice', function (require) {
 			if(this.pos.config.invoice_type_setting === 'pos_invoice' && this.pos.config.module_account)
 			{
 		            var order = this.pos.get_order();
-                            order.set_to_invoice(!order.is_to_invoice());
-                            if (order.is_to_invoice(true)) {
+                            order.set_to_invoice(!order.is_to_invoice(true));
+                            if (order.is_to_invoice()) {
                                 this.$('.js_invoice').addClass('highlight');
                                 this.$('.js_electronic_invoice').removeClass('hidden');
                             }
@@ -20,8 +20,8 @@ odoo.define('pos_auto_invoice.pos_auto_invoice', function (require) {
                         if(this.pos.config.invoice_type_setting === 'electronic_invoice' && this.pos.config.module_account)
                         {
                             var order = this.pos.get_order();
-                            order.set_to_electronic_invoice(!order.is_to_electronic_invoice());
-                            if (order.is_to_electronic_invoice(true)) {
+                            order.set_to_electronic_invoice(!order.is_to_electronic_invoice(true));
+                            if (order.is_to_electronic_invoice()) {
                                 this.$('.js_electronic_invoice').addClass('highlight');
                                 this.$('.js_invoice').addClass('highlight');
                                 this.$('.js_electronic_invoice').removeClass('hidden');
