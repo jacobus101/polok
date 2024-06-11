@@ -9,7 +9,8 @@ class PosConfig(models.Model):
     auto_invoice = fields.Boolean("Auto Invoice", config_parameter='pos_auto_invoice.auto_invoice')
     invoice_type_setting = fields.Selection([
         ('pos_invoice', 'POS invoice'),
-        ('electronic_invoice', 'Electronic Invoice')
+        ('electronic_invoice', 'Electronic Invoice'),
+        ('hide_invoice', 'Hide Invoice')
         ])
 
     @api.onchange('auto_invoice')
