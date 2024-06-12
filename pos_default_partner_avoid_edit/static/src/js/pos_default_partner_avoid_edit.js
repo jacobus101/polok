@@ -1,39 +1,21 @@
-// static/src/js/pos_default_partner_avoid_edit.js
 odoo.define('pos_default_partner_avoid_edit.disable_edit_button', function(require) {
     'use strict';
 
-    var PosComponent = require('point_of_sale.PosComponent');
-    var Registries = require('point_of_sale.Registries');
+    var models = require('point_of_sale.models');
+    var screens = require('point_of_sale.screens');
 
-    const DisableEditButton = (PosComponent) => class extends PosComponent {
-        constructor() {
-            super(...arguments);
-            this.env.pos.on('change:selectedClient', this, this._checkDefaultPartner);
-        }
+    models.load_fields('res.partner', ['is_default']);
 
-        async willStart() {
-            await super.willStart();
-            this._checkDefaultPartner();
-        }
+    screens.ClientListScreenWidget.include({
+        display_client_details: function(visibility, partner, clickpos) {
+            this._super(visibility, partner, clickpos);
+            var editButton = this.$('.button.edit');
 
-        _checkDefaultPartner() {
-            const defaultPartner = this.env.pos.db.get_partner_by_id(this.env.pos.config.default_partner_id);
-            const currentPartner = this.env.pos.get_order().get_client();
-            const editButton = document.querySelector('.button.edit');
-
-            if (defaultPartner && currentPartner && defaultPartner.id === currentPartner.id) {
-                if (editButton) {
-                    editButton.style.display = 'none';
-                }
+            if (partner.is_default) {
+                editButton.hide();
             } else {
-                if (editButton) {
-                    editButton.style.display = '';
-                }
+                editButton.show();
             }
-        }
-    };
-
-    Registries.Component.extend(PosComponent, DisableEditButton);
-
-    return PosComponent;
+        },
+    });
 });
