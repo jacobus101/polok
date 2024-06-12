@@ -9,7 +9,7 @@ odoo.define('pos_default_partner_avoid_edit.disable_edit_button', function(requi
     screens.ClientListScreenWidget.include({
         display_client_details: function(visibility, partner, clickpos) {
             this._super(visibility, partner, clickpos);
-            var editButton = this.$('.button.edit');
+            var editButton = this.$('.edit-buttons');
 
             if (partner.is_default) {
                 editButton.hide();
