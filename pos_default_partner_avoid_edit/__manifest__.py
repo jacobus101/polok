@@ -7,7 +7,7 @@
     'description': """
         This module disables the edit button in the POS interface when the default partner is selected.
     """,
-    'author': 'Tu Nombre',
+    'author': 'Santiago López',
     'depends': ['point_of_sale', 'pos_default_partner'],
     'data': [
         'views/pos_assets.xml',
