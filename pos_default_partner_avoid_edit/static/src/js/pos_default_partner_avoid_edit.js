@@ -7,7 +7,7 @@ odoo.define('pos_default_partner_avoid_edit.disable_edit_button', function(requi
         display_client_details: function(visibility, partner, clickpos) {
             this._super(visibility, partner, clickpos);
             var editButton = this.$('.button.edit');
-            var defaultPartnerId = this.pos.config.default_partner_id;
+            var defaultPartnerId = this.pos.config.default_partner_id[0];
 
             if (partner && partner.id === defaultPartnerId) {
                 editButton.hide();
