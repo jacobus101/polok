@@ -1,7 +1,7 @@
 from odoo import models, api
 
 class YourModel(models.Model):
-    _inherit = 'account._compute_amount' 
+    _inherit = 'AccountInvoice' 
 
     @api.multi
     def call_compute_amount(self):
