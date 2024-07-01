@@ -7,3 +7,4 @@ class AccountInvoice(models.Model):
     def call_compute_amount(self):
         for record in self:
             record._compute_amount()
+        return True
