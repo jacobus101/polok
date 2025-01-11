@@ -3,7 +3,6 @@ odoo.define('pos_geolocation.pos_geolocation', function (require) {
 
     const models = require('point_of_sale.models');
 
-    // Extend the POS Order model to include geolocation
     models.Order = models.Order.extend({
         initialize: function (attributes, options) {
             this.latitude = null;
@@ -33,12 +32,13 @@ odoo.define('pos_geolocation.pos_geolocation', function (require) {
         }
     });
 
-    // Trigger geolocation before pushing an order to the backend
     const PosModel = models.PosModel;
     models.PosModel = PosModel.extend({
         push_order: function (order, opts) {
-            order.set_geolocation(); // Capture geolocation
+            order.set_geolocation(); // Capture geolocation before pushing the order
             return this._super(order, opts);
         }
     });
+
+    console.log('POS Geolocation module loaded!');
 });
