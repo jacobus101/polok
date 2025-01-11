@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-name="GeolocationButton">
+        <button class="button geolocation-button">
+            <t t-esc="widget.format_currency('📍 Geolocate')"/>
+        </button>
+    </t>
+</templates>
+</xml>
