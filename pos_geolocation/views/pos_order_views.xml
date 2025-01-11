@@ -2,9 +2,9 @@
     <record id="view_pos_order_form_inherit_geolocation" model="ir.ui.view">
         <field name="name">pos.order.form.geolocation</field>
         <field name="model">pos.order</field>
-        <field name="inherit_id" ref="point_of_sale.view_pos_order_form"/>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//group" position="inside">
+            <xpath expr="//sheet//group" position="inside">
                 <field name="latitude"/>
                 <field name="longitude"/>
             </xpath>
