@@ -15,8 +15,8 @@
     'assets': {
         'point_of_sale.assets': [
             'pos_geolocation/static/src/js/pos_geolocation.js',
-            'pos_geolocation/static/src/js/pos_geolocation_button.js',
-            'pos_geolocation/static/src/xml/pos_geolocation_button.xml',
+            # 'pos_geolocation/static/src/js/pos_geolocation_button.js',
+            # 'pos_geolocation/static/src/xml/pos_geolocation_button.xml',
         ],
     },
     'installable': True,
