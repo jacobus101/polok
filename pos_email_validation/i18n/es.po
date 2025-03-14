@@ -1,8 +1,0 @@
-#. module: pos_email_validation
-#: pos_email_validation/static/src/js/pos_email_validation.js:18
-msgid "Invalid Email"
-msgstr "Correo electrónico inválido"
-
-#: pos_email_validation/static/src/js/pos_email_validation.js:19
-msgid "Please enter a valid email address."
-msgstr "Por favor, ingrese una dirección de correo electrónico válida."
