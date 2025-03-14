@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-
         <!-- Modificar el campo product_id en el formulario de stock.move -->
         <record id="view_move_form_inherit_hide_product_quick_create" model="ir.ui.view">
             <field name="name">stock.move.form.inherit.hide.product.quick.create</field>
@@ -13,30 +12,5 @@
                 </xpath>
             </field>
         </record>
-
-        <!-- Modificar el campo product_id en la vista lista de stock.move -->
-        <record id="view_move_tree_inherit_hide_product_quick_create" model="ir.ui.view">
-            <field name="name">stock.move.tree.inherit.hide.product.quick.create</field>
-            <field name="model">stock.move</field>
-            <field name="inherit_id" ref="stock.view_stock_move_tree"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='product_id']" position="attributes">
-                    <attribute name="options">{'no_create': True, 'no_quick_create': True, 'no_create_edit': True}</attribute>
-                </xpath>
-            </field>
-        </record>
-
-        <!-- Si también se utiliza en stock.move.line (si la vista lo requiere) -->
-        <record id="view_move_line_form_inherit_hide_product_quick_create" model="ir.ui.view">
-            <field name="name">stock.move.line.form.inherit.hide.product.quick.create</field>
-            <field name="model">stock.move.line</field>
-            <field name="inherit_id" ref="stock.view_move_line_form"/>
-            <field name="arch" type="xml">
-                <xpath expr="//field[@name='product_id']" position="attributes">
-                    <attribute name="options">{'no_create': True, 'no_quick_create': True, 'no_create_edit': True}</attribute>
-                </xpath>
-            </field>
-        </record>
-
     </data>
 </odoo>
