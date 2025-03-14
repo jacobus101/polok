@@ -5,7 +5,7 @@
     'summary': 'Oculta la creación rápida y la opción de crear/editar productos en los formularios de stock.picking',
     'author': 'Santiago Lopez',
     'license': 'AGPL-3',
-    'depends': ['stock'],
+    'depends': ['stock', 'purchase', 'sale_management'],
     'data': [
         'views/stock_picking_views.xml',
     ],
