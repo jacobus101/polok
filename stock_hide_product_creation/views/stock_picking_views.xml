@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
     <data>
-        <!-- Modificar el campo product_id en el formulario de stock.move -->
-        <record id="view_move_form_inherit_hide_product_quick_create" model="ir.ui.view">
-            <field name="name">stock.move.form.inherit.hide.product.quick.create</field>
-            <field name="model">stock.move</field>
-            <field name="inherit_id" ref="stock.view_move_form"/>
+        <!-- Heredamos la vista de formulario de stock picking -->
+        <record id="view_picking_form_inherit_hide_product_quick_create" model="ir.ui.view">
+            <field name="name">stock.picking.form.inherit.hide.product.quick.create</field>
+            <field name="model">stock.picking</field>
+            <field name="inherit_id" ref="stock.view_picking_form"/>
             <field name="arch" type="xml">
-                <xpath expr="//field[@name='product_id']" position="attributes">
+                <!-- Ubicamos el árbol (tree) de las líneas de operaciones y modificamos el campo product_id -->
+                <xpath expr="//field[@name='move_line_ids']/tree/field[@name='product_id']" position="attributes">
                     <attribute name="options">{'no_create': True, 'no_quick_create': True, 'no_create_edit': True}</attribute>
                 </xpath>
             </field>
