@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_cash_expense_wizard_form" model="ir.ui.view">
+        <field name="name">cash.expense.wizard.form</field>
+        <field name="model">cash.expense.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Register Cash Expense">
+                <sheet>
+                    <group>
+                        <group>
+                            <field name="statement_id" invisible="1"/>
+                            <field name="partner_id"/>
+                            <field name="amount"/>
+                            <field name="currency_id" invisible="1"/>
+                            <field name="description"/>
+                        </group>
+                        <group>
+                            <field name="journal_id"/>
+                            <field name="expense_type"/>
+                            <field name="expense_account_id"/>
+                        </group>
+                    </group>
+                </sheet>
+                <footer>
+                    <button string="Create Payment" name="create_statement_line" type="object" class="btn-primary"/>
+                    <button string="Cancel" class="btn-secondary" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_cash_expense_wizard" model="ir.actions.act_window">
+        <field name="name">Register Cash Expense</field>
+        <field name="res_model">cash.expense.wizard</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+</odoo> 
