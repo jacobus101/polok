@@ -31,6 +31,11 @@ class CashExpenseWizard(models.TransientModel):
     def _default_journal_count(self):
         return len(self._default_journals().ids)
 
+    name = fields.Char(
+        string='Reference',
+        required=True,
+        default='/',
+    )
     journal_ids = fields.Many2many(
         'account.journal',
         string='Journals',
@@ -105,6 +110,7 @@ class CashExpenseWizard(models.TransientModel):
     def _onchange_expense_model(self):
         if self.expense_model_id:
             self.description = self.expense_model_id.name
+            self.name = self.expense_model_id.name
 
     @api.multi
     def _calculate_values_for_statement_line(self, record):
