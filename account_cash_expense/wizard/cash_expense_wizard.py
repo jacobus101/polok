@@ -33,10 +33,10 @@ class CashExpenseWizard(models.TransientModel):
 
     journal_ids = fields.Many2many(
         'account.journal',
+        string='Journals',
         default=lambda self: self._default_journals(),
         required=True,
         readonly=True,
-        string='Journals',
     )
     journal_count = fields.Integer(
         default=lambda self: self._default_journal_count(),
@@ -94,7 +94,10 @@ class CashExpenseWizard(models.TransientModel):
     @api.depends('journal_id')
     def _compute_currency(self):
         for record in self:
-            record.currency_id = record.journal_id.currency_id or record.journal_id.company_id.currency_id
+            if record.journal_id:
+                record.currency_id = record.journal_id.currency_id or record.journal_id.company_id.currency_id
+            else:
+                record.currency_id = record.company_id.currency_id
 
     @api.onchange('journal_ids')
     def compute_journal_count(self):
