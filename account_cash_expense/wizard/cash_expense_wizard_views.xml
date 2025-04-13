@@ -15,14 +15,14 @@
                     <field name="partner_id"
                            class="oe_inline"
                            options="{'no_create': True}"/>
+                    <field name="expense_model_id"
+                           class="oe_inline"
+                           options="{'no_create': True}"/>
                     <label for="amount"/>
                     <div>
                         <field name="amount" class="oe_inline"/>
                         <field name="currency_id" class="oe_inline" groups="base.group_multi_currency"/>
                     </div>
-                    <field name="expense_type"/>
-                    <field name="expense_account_id"
-                           options="{'no_create': True}"/>
                     <field name="description" placeholder="Descripción del gasto..."/>
                 </group>
                 <footer>

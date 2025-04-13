@@ -64,15 +64,11 @@ class CashExpenseWizard(models.TransientModel):
         required=True,
         readonly=True,
     )
-    expense_type = fields.Selection([
-        ('purchase', 'Purchase'),
-        ('expense', 'Expense'),
-    ], string='Type', required=True, default='expense')
-    expense_account_id = fields.Many2one(
-        'account.account',
-        string='Expense Account',
+    expense_model_id = fields.Many2one(
+        'account.reconcile.model',
+        string='Expense Type',
         required=True,
-        domain=[('user_type_id.type', 'in', ['payable', 'expense'])],
+        domain="[('journal_id', '=', journal_id)]",
     )
     description = fields.Char(
         string='Description',
@@ -88,12 +84,16 @@ class CashExpenseWizard(models.TransientModel):
     def default_journals(self, active_model, active_ids):
         return self.env[active_model].browse(active_ids)[0].journal_id
 
-    @api.onchange('expense_type')
-    def _onchange_expense_type(self):
-        domain = [('user_type_id.type', '=', 'expense')]
-        if self.expense_type == 'purchase':
-            domain = [('user_type_id.type', '=', 'payable')]
-        return {'domain': {'expense_account_id': domain}}
+    @api.onchange('journal_id')
+    def _onchange_journal(self):
+        if self.journal_id:
+            return {'domain': {'expense_model_id': [('journal_id', '=', self.journal_id.id)]}}
+        return {'domain': {'expense_model_id': []}}
+
+    @api.onchange('expense_model_id')
+    def _onchange_expense_model(self):
+        if self.expense_model_id:
+            self.description = self.expense_model_id.name
 
     @api.multi
     def _calculate_values_for_statement_line(self, record):
@@ -105,7 +105,7 @@ class CashExpenseWizard(models.TransientModel):
             'amount': -abs(self.amount),  # Siempre negativo para pagos
             'date': fields.Date.context_today(self),
             'name': self.description,
-            'account_id': self.expense_account_id.id,
+            'expense_model_id': self.expense_model_id.id,
         })
         return res
 
@@ -118,7 +118,7 @@ class CashExpenseWizard(models.TransientModel):
             'amount': -abs(self.amount),  # Siempre negativo para pagos
             'date': fields.Date.context_today(self),
             'name': self.description,
-            'account_id': self.expense_account_id.id,
+            'expense_model_id': self.expense_model_id.id,
         }
         self.env['account.bank.statement.line'].create(vals)
         return {'type': 'ir.actions.act_window_close'} 
