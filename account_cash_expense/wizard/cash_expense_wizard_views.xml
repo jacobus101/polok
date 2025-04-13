@@ -8,7 +8,6 @@
                 <group>
                     <field name="company_id" invisible="1"/>
                     <field name="currency_id" invisible="1"/>
-                    <field name="statement_id" invisible="1"/>
                     <field name="journal_id"
                            class="oe_inline"
                            options="{'no_create': True, 'no_open':True}"/>
@@ -45,6 +44,5 @@
         src_model="account.bank.statement"
         view_mode="form"
         target="new"
-        context="{'default_statement_id': active_id}"
         key2="client_action_multi"/>
 </odoo> 

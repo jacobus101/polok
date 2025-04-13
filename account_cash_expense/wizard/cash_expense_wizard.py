@@ -31,12 +31,6 @@ class CashExpenseWizard(models.TransientModel):
     def _default_journal_count(self):
         return len(self._default_journals().ids)
 
-    statement_id = fields.Many2one(
-        'account.bank.statement',
-        string='Statement',
-        required=True,
-        default=lambda self: self.env.context.get('default_statement_id', False),
-    )
     journal_id = fields.Many2one(
         'account.journal',
         string='Journal',
@@ -100,7 +94,6 @@ class CashExpenseWizard(models.TransientModel):
     def _calculate_values_for_statement_line(self, record):
         res = super(CashExpenseWizard, self)._calculate_values_for_statement_line(record)
         res.update({
-            'statement_id': self.statement_id.id,
             'journal_id': self.journal_id.id,
             'partner_id': self.partner_id.id,
             'amount': -abs(self.amount),  # Siempre negativo para pagos
