@@ -35,6 +35,7 @@ class CashExpenseWizard(models.TransientModel):
         'account.bank.statement',
         string='Statement',
         required=True,
+        default=lambda self: self.env.context.get('default_statement_id', False),
     )
     journal_id = fields.Many2one(
         'account.journal',
