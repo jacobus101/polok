@@ -62,8 +62,7 @@ class CashExpenseWizard(models.TransientModel):
         'res.currency',
         string='Currency',
         required=True,
-        compute='_compute_currency',
-        store=True,
+        default=lambda self: self._default_currency(),
     )
     company_id = fields.Many2one(
         'res.company',
@@ -91,14 +90,6 @@ class CashExpenseWizard(models.TransientModel):
     def default_journals(self, active_model, active_ids):
         return self.env[active_model].browse(active_ids)[0].journal_id
 
-    @api.depends('journal_id')
-    def _compute_currency(self):
-        for record in self:
-            if record.journal_id:
-                record.currency_id = record.journal_id.currency_id or record.journal_id.company_id.currency_id
-            else:
-                record.currency_id = record.company_id.currency_id
-
     @api.onchange('journal_ids')
     def compute_journal_count(self):
         self.journal_count = len(self.journal_ids.ids)
@@ -106,6 +97,7 @@ class CashExpenseWizard(models.TransientModel):
     @api.onchange('journal_id')
     def _onchange_journal(self):
         if self.journal_id:
+            self.currency_id = self.journal_id.currency_id or self.journal_id.company_id.currency_id
             return {'domain': {'expense_model_id': [('journal_id', '=', self.journal_id.id)]}}
         return {'domain': {'expense_model_id': []}}
 
