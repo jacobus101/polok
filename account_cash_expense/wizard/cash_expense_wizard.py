@@ -31,12 +31,23 @@ class CashExpenseWizard(models.TransientModel):
     def _default_journal_count(self):
         return len(self._default_journals().ids)
 
+    journal_ids = fields.Many2many(
+        'account.journal',
+        default=lambda self: self._default_journals(),
+        required=True,
+        readonly=True,
+        string='Journals',
+    )
+    journal_count = fields.Integer(
+        default=lambda self: self._default_journal_count(),
+        readonly=True
+    )
     journal_id = fields.Many2one(
         'account.journal',
         string='Journal',
         required=True,
         default=lambda self: self._default_journal(),
-        domain=[('type', 'in', ['purchase', 'general'])],
+        domain="[('id', 'in', journal_ids)]",
     )
     partner_id = fields.Many2one(
         'res.partner',
@@ -51,7 +62,8 @@ class CashExpenseWizard(models.TransientModel):
         'res.currency',
         string='Currency',
         required=True,
-        default=lambda self: self._default_currency(),
+        compute='_compute_currency',
+        store=True,
     )
     company_id = fields.Many2one(
         'res.company',
@@ -78,6 +90,15 @@ class CashExpenseWizard(models.TransientModel):
 
     def default_journals(self, active_model, active_ids):
         return self.env[active_model].browse(active_ids)[0].journal_id
+
+    @api.depends('journal_id')
+    def _compute_currency(self):
+        for record in self:
+            record.currency_id = record.journal_id.currency_id or record.journal_id.company_id.currency_id
+
+    @api.onchange('journal_ids')
+    def compute_journal_count(self):
+        self.journal_count = len(self.journal_ids.ids)
 
     @api.onchange('journal_id')
     def _onchange_journal(self):
