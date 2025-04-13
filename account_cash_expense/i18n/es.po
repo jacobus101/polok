@@ -1,0 +1,91 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+#   * account_cash_expense
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-01-24 10:00+0000\n"
+"PO-Revision-Date: 2024-01-24 10:00+0000\n"
+"Last-Translator: <>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#. module: account_cash_expense
+#: model:ir.model,name:account_cash_expense.model_cash_expense_wizard
+msgid "Cash Expense Wizard"
+msgstr "Asistente de Gastos en Efectivo"
+
+#. module: account_cash_expense
+#: model:ir.model.fields,field_description:account_cash_expense.field_cash_expense_wizard__name
+msgid "Reference"
+msgstr "Referencia"
+
+#. module: account_cash_expense
+#: model:ir.model.fields,field_description:account_cash_expense.field_cash_expense_wizard__journal_ids
+msgid "Journals"
+msgstr "Diarios"
+
+#. module: account_cash_expense
+#: model:ir.model.fields,field_description:account_cash_expense.field_cash_expense_wizard__journal_id
+msgid "Journal"
+msgstr "Diario"
+
+#. module: account_cash_expense
+#: model:ir.model.fields,field_description:account_cash_expense.field_cash_expense_wizard__partner_id
+msgid "Partner"
+msgstr "Empresa"
+
+#. module: account_cash_expense
+#: model:ir.model.fields,field_description:account_cash_expense.field_cash_expense_wizard__amount
+msgid "Amount"
+msgstr "Importe"
+
+#. module: account_cash_expense
+#: model:ir.model.fields,field_description:account_cash_expense.field_cash_expense_wizard__currency_id
+msgid "Currency"
+msgstr "Moneda"
+
+#. module: account_cash_expense
+#: model:ir.model.fields,field_description:account_cash_expense.field_cash_expense_wizard__company_id
+msgid "Company"
+msgstr "Compañía"
+
+#. module: account_cash_expense
+#: model:ir.model.fields,field_description:account_cash_expense.field_cash_expense_wizard__expense_model_id
+msgid "Expense Type"
+msgstr "Tipo de Gasto"
+
+#. module: account_cash_expense
+#: model:ir.model.fields,field_description:account_cash_expense.field_cash_expense_wizard__description
+msgid "Description"
+msgstr "Descripción"
+
+#. module: account_cash_expense
+#: model_terms:ir.ui.view,arch_db:account_cash_expense.view_cash_expense_wizard_form
+msgid "Register Cash Expense"
+msgstr "Registrar Gasto en Efectivo"
+
+#. module: account_cash_expense
+#: model_terms:ir.ui.view,arch_db:account_cash_expense.view_cash_expense_wizard_form
+msgid "Create Payment"
+msgstr "Crear Pago"
+
+#. module: account_cash_expense
+#: model_terms:ir.ui.view,arch_db:account_cash_expense.view_cash_expense_wizard_form
+msgid "Cancel"
+msgstr "Cancelar"
+
+#. module: account_cash_expense
+#: model:ir.actions.act_window,name:account_cash_expense.action_cash_expense_wizard_from_statement
+msgid "Register Cash Expense"
+msgstr "Registrar Gasto en Efectivo"
+
+#. module: account_cash_expense
+#: model_terms:ir.ui.view,arch_db:account_cash_expense.view_bank_statement_form_inherit_cash_expense
+msgid "Register Expense"
+msgstr "Registrar Gasto" 
