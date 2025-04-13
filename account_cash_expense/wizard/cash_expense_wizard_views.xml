@@ -38,15 +38,6 @@
         </field>
     </record>
 
-    <record id="action_cash_expense_wizard" model="ir.actions.act_window">
-        <field name="name">Register Cash Expense</field>
-        <field name="res_model">cash.expense.wizard</field>
-        <field name="view_type">form</field>
-        <field name="view_mode">form</field>
-        <field name="target">new</field>
-        <field name="view_id" ref="view_cash_expense_wizard_form"/>
-    </record>
-
     <act_window
         id="action_cash_expense_wizard_from_statement"
         name="Register Cash Expense"

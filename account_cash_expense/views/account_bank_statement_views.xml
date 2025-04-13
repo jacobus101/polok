@@ -5,8 +5,8 @@
         <field name="model">account.bank.statement</field>
         <field name="inherit_id" ref="account.view_bank_statement_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//button[@name='button_cancel']" position="before">
-                <button name="%(action_cash_expense_wizard)d"
+            <xpath expr="//header" position="inside">
+                <button name="%(action_cash_expense_wizard_from_statement)d"
                         type="action"
                         class="oe_highlight"
                         string="Register Expense"

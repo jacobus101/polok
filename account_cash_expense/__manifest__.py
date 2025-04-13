@@ -13,7 +13,6 @@
     'data': [
         'security/ir.model.access.csv',
         'wizard/cash_expense_wizard_views.xml',
-        'views/account_bank_statement_views.xml',
     ],
     'demo': [],
     'installable': True,
