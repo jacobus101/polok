@@ -5,13 +5,14 @@
         <field name="model">account.bank.statement</field>
         <field name="inherit_id" ref="account.view_bank_statement_form"/>
         <field name="arch" type="xml">
-            <button name="button_cancel_reconciliation" position="before">
+            <xpath expr="//button[@name='button_cancel']" position="before">
                 <button name="%(action_cash_expense_wizard)d"
                         type="action"
+                        class="oe_highlight"
                         string="Register Expense"
-                        context="{'default_statement_id': id}"
+                        context="{'active_model': 'account.bank.statement', 'active_ids': [id]}"
                         attrs="{'invisible': [('state', '=', 'confirm')]}"/>
-            </button>
+            </xpath>
         </field>
     </record>
 </odoo> 
