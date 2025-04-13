@@ -107,18 +107,4 @@ class CashExpenseWizard(models.TransientModel):
             'name': self.description,
             'expense_model_id': self.expense_model_id.id,
         })
-        return res
-
-    def create_statement_line(self):
-        self.ensure_one()
-        vals = {
-            'statement_id': self.statement_id.id,
-            'journal_id': self.journal_id.id,
-            'partner_id': self.partner_id.id,
-            'amount': -abs(self.amount),  # Siempre negativo para pagos
-            'date': fields.Date.context_today(self),
-            'name': self.description,
-            'expense_model_id': self.expense_model_id.id,
-        }
-        self.env['account.bank.statement.line'].create(vals)
-        return {'type': 'ir.actions.act_window_close'} 
+        return res 
