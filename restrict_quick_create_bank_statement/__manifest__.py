@@ -1,6 +1,6 @@
 {
     'name': 'Restrict Quick Create in Bank Statements',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'category': 'Accounting',
     'summary': 'Restricts quick create functionality in bank statements for users without accounting permissions',
     'author': 'Polok',
