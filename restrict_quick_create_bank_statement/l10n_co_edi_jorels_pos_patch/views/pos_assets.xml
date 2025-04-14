@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<odoo>
+    <data>
+      <template id="l10n_co_edi_jorels_pos_patch_js" name="l10n_co_edi_jorels_pos_patch_js" inherit_id="point_of_sale.assets">
+          <xpath expr="." position="inside">
+              <script type="text/javascript" src="/l10n_co_edi_jorels_pos_patch/static/src/js/pos_patch.js"/>
+          </xpath>
+      </template>
+    </data>
+</odoo>

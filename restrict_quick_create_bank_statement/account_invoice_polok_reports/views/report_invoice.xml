@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <template id="extexnal_layout_standard_polok" inherit_id="web.external_layout_standard">
+    <xpath expr="//div[@class='header']" position="replace">
+      <div class="header" t-att-style="report_header_style">
+        <div class="row">
+            <div class="col-3 mb4">
+                <img t-if="company.logo" t-att-src="image_data_uri(company.logo)" style="max-height: 45px;" alt="Logo"/>
+            </div>
+            <div class="col-9 text-right" style="margin-top:22px;" t-field="company.report_header" name="moto"/>
+        </div>
+        <div t-if="company.logo or company.report_header" class="row zero_min_height">
+            <div class="col-12">
+                <div style="border-bottom: 1px solid black;"/>
+            </div>
+        </div>
+    </div>
+    </xpath> 
+  </template>
+  <template id="report_invoice_document_polok" inherit_id="l10n_co_edi_jorels.report_invoice_document_custom">
+      <xpath expr="//div[@class='container']" position="replace">
+        <div class="container" t-if="o.env.user.company_id.ei_enable">
+          <div class="row mb32">
+            <div class="col-2">
+              <span t-field="o.company_id.partner_id" t-options="{&quot;widget&quot;: &quot;contact&quot;, &quot;fields&quot;: [&quot;address&quot;, &quot;name&quot;], &quot;no_marker&quot;: true}"/>
+              <strong>Nit: </strong><span t-field="o.company_id.vat"/>
+            </div>
+            <div class="col-5" style="font-size:11px;">
+              <strong>Tipo de organización: </strong><span t-field="o.company_id.type_organization_id"/>
+              <br/>
+              <strong>Tipo de regimen: </strong><span t-field="o.company_id.type_regime_id"/>
+              <br/>
+              <strong>Tipo de responsabilidad:</strong><span t-field="o.company_id.type_liability_id"/>
+              <br/>
+              <span t-field="o.company_id.report_custom_text"/>
+            </div>
+            <div class="col-5"  style="font-size:11px;">
+              <strong t-if="o.type == 'out_invoice' or o.type == 'out_refund'">Cliente</strong>
+              <strong t-if="o.type == 'in_invoice' or o.type == 'in_refund'">Proveedor</strong>
+              <div t-if="o.partner_id.vat">
+                  <span t-if="o.partner_id.l10n_co_document_type == 'civil_registration'">R.C.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'id_card'">T.I.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'id_document'">C.C.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'national_citizen_id'">C.C.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'residence_document'">T.E.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'foreign_id_card'">C.E.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'rut'">NIT:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'passport'">PAS:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'external_id'">D.I.E.:</span>
+                  <span t-if="o.partner_id.l10n_co_document_type == 'diplomatic_card'">Tax ID:</span>
+                  <span t-field="o.partner_id.vat"/>
+              </div>
+              <address t-field="o.partner_id"
+                        t-options='{"widget": "contact", "fields": ["address", "name", "phone", "email"], "no_marker": True}'/>
+            </div>
+          </div>
+        </div>
+      </xpath>
+      <xpath expr="//div[@id='informations']" position="replace">
+        <div id="informations" class="row mt32 mb32" style="font-size:11px;">
+          <div t-if="o.ei_is_not_test and o.ei_qr_data" class="col-2">
+            <img t-att-src="'/report/barcode/?type=%s&amp;value=%s&amp;width=%s&amp;height=%s' % ('QR', o.ei_qr_data, 120, 120)"/>
+          </div>
+          <div class="col-10">
+            <strong>Fecha de factura:</strong>
+            <span t-field="o.date_invoice"/>
+            <span t-if="o.date_due and o.type == 'out_invoice' and o.state in ('open', 'in_payment', 'paid')" name="due_date">
+                <strong>Due Date:</strong>
+                <span t-field="o.date_due"/>
+            </span>
+            <strong>Descripción:</strong>
+            <span t-field="o.name"/>
+            <span t-if="o.origin" name="origin">
+                <strong>Origen:</strong>
+                <span t-field="o.origin"/>
+            </span>
+            <span t-if="o.partner_id.ref" name="customer_code">
+                <strong>Código cliente:</strong>
+                <span t-field="o.partner_id.ref"/>
+            </span>
+            <span name="reference" t-if="o.reference">
+                <strong>Referencia:</strong>
+                <span t-field="o.reference"/>
+            </span>
+            <br/>
+            <span t-if="o.ei_is_valid">
+              <strong t-if="o.type == 'out_invoice' and not o.debit_invoice_id.id">CUFE:</strong>
+              <strong t-if="o.type == 'out_invoice' and o.debit_invoice_id.id">CUDE:</strong>
+              <strong t-if="o.type == 'out_refund'">CUDE:</strong>
+              <span t-field="o.ei_uuid"/>
+            </span>
+            <span t-else="">
+                <span>This document has not been validated in the DIAN</span>
+            </span>
+            <span t-if="o.ei_signature">
+                <strong>Signature:</strong>
+                <span t-field="o.ei_signature"/>
+            </span>
+            <strong>Invoicing authorization number:</strong>
+            <span t-field="o.journal_id.sequence_id.resolution_id.resolution_resolution"/>
+            <strong>Date:</strong>
+            <span t-field="o.journal_id.sequence_id.resolution_id.resolution_resolution_date"/>
+            <strong>Authorized range from:</strong>
+            <span t-field="o.journal_id.sequence_id.resolution_id.resolution_prefix"/>
+            <span t-field="o.journal_id.sequence_id.resolution_id.resolution_from"/>
+            <strong>to</strong>
+            <span t-field="o.journal_id.sequence_id.resolution_id.resolution_prefix"/>
+            <span t-field="o.journal_id.sequence_id.resolution_id.resolution_to"/>
+            <strong>Valid from:</strong>
+            <span t-field="o.journal_id.sequence_id.resolution_id.resolution_date_from"/>
+            <strong>to</strong>
+            <span t-field="o.journal_id.sequence_id.resolution_id.resolution_date_to"/>
+            <strong>Graphic representation of electronic invoicing printed by computer with own
+                software by
+            </strong>
+            <strong t-field="o.company_id.business_name"/>
+          </div>
+        </div>
+      </xpath>
+      <xpath expr="//div[@class='mt16 text-center']" position='replace'>
+      </xpath>
+  </template>
+  <template id="report_invoice_document_polok_2" inherit_id="account.report_invoice_document">
+    <xpath expr="//td[@class='text-right o_price_total']" position='replace'>
+      <td class="text-right o_price_total">
+        <span class="text-nowrap" t-field="line.price_subtotal"/>
+      </td>
+    </xpath>
+    <xpath expr="//table[@class='table table-sm o_main_table']" position="attributes">
+      <attribute name="style">font-size:11px;</attribute>
+    </xpath>
+  </template>
+</odoo>
