@@ -9,11 +9,6 @@
             <xpath expr="//field[@name='line_ids']/tree" position="attributes">
                 <attribute name="create">0</attribute>
             </xpath>
-
-            <!-- Permitir creación solo a usuarios con permisos contables -->
-            <xpath expr="//field[@name='line_ids']/tree" position="attributes">
-                <attribute name="create" groups="account.group_account_user">1</attribute>
-            </xpath>
         </field>
     </record>
 
