@@ -56,31 +56,11 @@
         </field>
     </record>
 
-    <!-- Modificar la acción del botón Agregar una línea -->
-    <record id="account.action_bank_statement_line_create" model="ir.actions.act_window">
-        <field name="groups_id" eval="[(4, ref('account.group_account_user'))]"/>
-    </record>
-
-    <!-- Heredar la vista tree para asegurar que no se pueda crear desde la lista -->
-    <record id="view_bank_statement_tree_no_create" model="ir.ui.view">
-        <field name="name">account.bank.statement.tree.no.create</field>
+    <!-- Vista tree base que permite crear extractos a todos -->
+    <record id="view_bank_statement_tree_base" model="ir.ui.view">
+        <field name="name">account.bank.statement.tree.base</field>
         <field name="model">account.bank.statement</field>
         <field name="inherit_id" ref="account.view_bank_statement_tree"/>
-        <field name="arch" type="xml">
-            <tree position="attributes">
-                <attribute name="create">false</attribute>
-                <attribute name="edit">false</attribute>
-                <attribute name="delete">false</attribute>
-            </tree>
-        </field>
-        <field name="groups_id" eval="[(6, 0, [])]"/>
-    </record>
-
-    <!-- Vista tree para usuarios con permisos de contabilidad -->
-    <record id="view_bank_statement_tree_accountant" model="ir.ui.view">
-        <field name="name">account.bank.statement.tree.accountant</field>
-        <field name="model">account.bank.statement</field>
-        <field name="inherit_id" ref="view_bank_statement_tree_no_create"/>
         <field name="arch" type="xml">
             <tree position="attributes">
                 <attribute name="create">true</attribute>
@@ -88,6 +68,5 @@
                 <attribute name="delete">true</attribute>
             </tree>
         </field>
-        <field name="groups_id" eval="[(6, 0, [ref('account.group_account_user')])]"/>
     </record>
 </odoo> 
