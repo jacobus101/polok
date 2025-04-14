@@ -11,18 +11,4 @@
             </xpath>
         </field>
     </record>
-
-    <!-- Vista tree base que permite crear extractos a todos -->
-    <record id="view_bank_statement_tree_base" model="ir.ui.view">
-        <field name="name">account.bank.statement.tree.base</field>
-        <field name="model">account.bank.statement</field>
-        <field name="inherit_id" ref="account.view_bank_statement_tree"/>
-        <field name="arch" type="xml">
-            <tree position="attributes">
-                <attribute name="create">true</attribute>
-                <attribute name="edit">true</attribute>
-                <attribute name="delete">true</attribute>
-            </tree>
-        </field>
-    </record>
 </odoo> 
