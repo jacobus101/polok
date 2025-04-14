@@ -9,46 +9,53 @@
             <field name="journal_id" position="attributes">
                 <attribute name="options">{'no_create': True, 'no_create_edit': True, 'no_open': True}</attribute>
             </field>
-            
-            <!-- Ocultar completamente la creación de líneas -->
-            <field name="line_ids" position="before">
-                <field name="user_has_accounting_rights" invisible="1"/>
-            </field>
 
-            <field name="line_ids" position="attributes">
+            <!-- Ocultar botón de agregar línea -->
+            <xpath expr="//field[@name='line_ids']" position="before">
+                <field name="user_has_accounting_rights" invisible="1"/>
+            </xpath>
+
+            <!-- Modificar el tree view de líneas -->
+            <xpath expr="//field[@name='line_ids']" position="attributes">
                 <attribute name="readonly">1</attribute>
-                <attribute name="options">{'no_create': True, 'no_create_edit': True}</attribute>
-            </field>
-            
+            </xpath>
+
+            <xpath expr="//notebook//page//field[@name='line_ids']" position="attributes">
+                <attribute name="options">{'no_create': True}</attribute>
+            </xpath>
+
+            <!-- Ocultar el botón de agregar línea -->
             <xpath expr="//field[@name='line_ids']/tree" position="attributes">
-                <attribute name="create">false</attribute>
-                <attribute name="edit">false</attribute>
-                <attribute name="delete">false</attribute>
-                <attribute name="editable">false</attribute>
+                <attribute name="create">0</attribute>
+                <attribute name="edit">0</attribute>
+                <attribute name="delete">0</attribute>
             </xpath>
 
-            <!-- Botón Agregar una línea -->
-            <xpath expr="//field[@name='line_ids']/tree" position="inside">
-                <field name="user_has_accounting_rights" invisible="1"/>
-            </xpath>
-
-            <!-- Permitir acceso solo a usuarios con permisos de contabilidad -->
-            <field name="line_ids" position="attributes">
+            <!-- Agregar atributos para usuarios con permisos -->
+            <xpath expr="//field[@name='line_ids']" position="attributes">
                 <attribute name="readonly" groups="account.group_account_user">0</attribute>
-                <attribute name="options" groups="account.group_account_user">{'no_create': False, 'no_create_edit': False}</attribute>
-            </field>
-            
-            <xpath expr="//field[@name='line_ids']/tree" position="attributes">
-                <attribute name="create" groups="account.group_account_user">true</attribute>
-                <attribute name="edit" groups="account.group_account_user">true</attribute>
-                <attribute name="delete" groups="account.group_account_user">true</attribute>
-                <attribute name="editable" groups="account.group_account_user">bottom</attribute>
             </xpath>
-            
+
+            <xpath expr="//notebook//page//field[@name='line_ids']" position="attributes">
+                <attribute name="options" groups="account.group_account_user">{'no_create': False}</attribute>
+            </xpath>
+
+            <xpath expr="//field[@name='line_ids']/tree" position="attributes">
+                <attribute name="create" groups="account.group_account_user">1</attribute>
+                <attribute name="edit" groups="account.group_account_user">1</attribute>
+                <attribute name="delete" groups="account.group_account_user">1</attribute>
+            </xpath>
+
+            <!-- Permitir creación para usuarios con permisos -->
             <field name="journal_id" position="attributes">
                 <attribute name="options" groups="account.group_account_user">{'no_create': False, 'no_create_edit': False, 'no_open': False}</attribute>
             </field>
         </field>
+    </record>
+
+    <!-- Modificar la acción del botón Agregar una línea -->
+    <record id="account.action_bank_statement_line_create" model="ir.actions.act_window">
+        <field name="groups_id" eval="[(4, ref('account.group_account_user'))]"/>
     </record>
 
     <!-- Heredar la vista tree para asegurar que no se pueda crear desde la lista -->
