@@ -7,10 +7,9 @@ class AccountBankStatement(models.Model):
     user_has_accounting_rights = fields.Boolean(
         string='Has Accounting Rights',
         compute='_compute_user_has_accounting_rights',
-        store=False,
     )
 
-    @api.depends('user_id')
+    @api.depends()
     def _compute_user_has_accounting_rights(self):
         for record in self:
             record.user_has_accounting_rights = self.env.user.has_group('account.group_account_user')
@@ -28,10 +27,9 @@ class AccountBankStatementLine(models.Model):
     user_has_accounting_rights = fields.Boolean(
         string='Has Accounting Rights',
         compute='_compute_user_has_accounting_rights',
-        store=False,
     )
 
-    @api.depends('user_id')
+    @api.depends()
     def _compute_user_has_accounting_rights(self):
         for record in self:
             record.user_has_accounting_rights = self.env.user.has_group('account.group_account_user')
