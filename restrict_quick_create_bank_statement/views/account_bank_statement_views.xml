@@ -6,10 +6,7 @@
         <field name="inherit_id" ref="account.view_bank_statement_form"/>
         <field name="arch" type="xml">
             <xpath expr="//field[@name='line_ids']/tree" position="attributes">
-                <attribute name="create">0</attribute>
-            </xpath>
-            <xpath expr="//field[@name='line_ids']/tree" position="inside">
-                <field name="create" groups="account.group_account_manager">1</field>
+                <attribute name="create" groups="!account.group_account_manager">0</attribute>
             </xpath>
         </field>
     </record>
