@@ -4,6 +4,17 @@ from odoo.exceptions import AccessError
 class AccountBankStatement(models.Model):
     _inherit = 'account.bank.statement'
 
+    user_has_accounting_rights = fields.Boolean(
+        string='Has Accounting Rights',
+        compute='_compute_user_has_accounting_rights',
+        store=False,
+    )
+
+    @api.depends('user_id')
+    def _compute_user_has_accounting_rights(self):
+        for record in self:
+            record.user_has_accounting_rights = self.env.user.has_group('account.group_account_user')
+
     @api.model
     def create(self, vals):
         if not self.env.user.has_group('account.group_account_user'):
@@ -13,6 +24,17 @@ class AccountBankStatement(models.Model):
 
 class AccountBankStatementLine(models.Model):
     _inherit = 'account.bank.statement.line'
+
+    user_has_accounting_rights = fields.Boolean(
+        string='Has Accounting Rights',
+        compute='_compute_user_has_accounting_rights',
+        store=False,
+    )
+
+    @api.depends('user_id')
+    def _compute_user_has_accounting_rights(self):
+        for record in self:
+            record.user_has_accounting_rights = self.env.user.has_group('account.group_account_user')
 
     @api.model
     def create(self, vals):

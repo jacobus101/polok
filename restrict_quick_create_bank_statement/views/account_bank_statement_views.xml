@@ -5,28 +5,79 @@
         <field name="model">account.bank.statement</field>
         <field name="inherit_id" ref="account.view_bank_statement_form"/>
         <field name="arch" type="xml">
+            <!-- Restringir creación rápida del diario -->
             <field name="journal_id" position="attributes">
+                <attribute name="options">{'no_create': True, 'no_create_edit': True, 'no_open': True}</attribute>
+            </field>
+            
+            <!-- Ocultar completamente la creación de líneas -->
+            <field name="line_ids" position="before">
+                <field name="user_has_accounting_rights" invisible="1"/>
+            </field>
+
+            <field name="line_ids" position="attributes">
+                <attribute name="readonly">1</attribute>
                 <attribute name="options">{'no_create': True, 'no_create_edit': True}</attribute>
             </field>
-            <xpath expr="//field[@name='line_ids']" position="attributes">
-                <attribute name="readonly">1</attribute>
-            </xpath>
+            
             <xpath expr="//field[@name='line_ids']/tree" position="attributes">
                 <attribute name="create">false</attribute>
                 <attribute name="edit">false</attribute>
                 <attribute name="delete">false</attribute>
+                <attribute name="editable">false</attribute>
             </xpath>
-            <xpath expr="//field[@name='line_ids']" position="attributes">
+
+            <!-- Botón Agregar una línea -->
+            <xpath expr="//field[@name='line_ids']/tree" position="inside">
+                <field name="user_has_accounting_rights" invisible="1"/>
+            </xpath>
+
+            <!-- Permitir acceso solo a usuarios con permisos de contabilidad -->
+            <field name="line_ids" position="attributes">
                 <attribute name="readonly" groups="account.group_account_user">0</attribute>
-            </xpath>
+                <attribute name="options" groups="account.group_account_user">{'no_create': False, 'no_create_edit': False}</attribute>
+            </field>
+            
             <xpath expr="//field[@name='line_ids']/tree" position="attributes">
                 <attribute name="create" groups="account.group_account_user">true</attribute>
                 <attribute name="edit" groups="account.group_account_user">true</attribute>
                 <attribute name="delete" groups="account.group_account_user">true</attribute>
+                <attribute name="editable" groups="account.group_account_user">bottom</attribute>
             </xpath>
+            
             <field name="journal_id" position="attributes">
-                <attribute name="options" groups="account.group_account_user">{'no_create': False, 'no_create_edit': False}</attribute>
+                <attribute name="options" groups="account.group_account_user">{'no_create': False, 'no_create_edit': False, 'no_open': False}</attribute>
             </field>
         </field>
+    </record>
+
+    <!-- Heredar la vista tree para asegurar que no se pueda crear desde la lista -->
+    <record id="view_bank_statement_tree_no_create" model="ir.ui.view">
+        <field name="name">account.bank.statement.tree.no.create</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="account.view_bank_statement_tree"/>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="create">false</attribute>
+                <attribute name="edit">false</attribute>
+                <attribute name="delete">false</attribute>
+            </tree>
+        </field>
+        <field name="groups_id" eval="[(6, 0, [])]"/>
+    </record>
+
+    <!-- Vista tree para usuarios con permisos de contabilidad -->
+    <record id="view_bank_statement_tree_accountant" model="ir.ui.view">
+        <field name="name">account.bank.statement.tree.accountant</field>
+        <field name="model">account.bank.statement</field>
+        <field name="inherit_id" ref="view_bank_statement_tree_no_create"/>
+        <field name="arch" type="xml">
+            <tree position="attributes">
+                <attribute name="create">true</attribute>
+                <attribute name="edit">true</attribute>
+                <attribute name="delete">true</attribute>
+            </tree>
+        </field>
+        <field name="groups_id" eval="[(6, 0, [ref('account.group_account_user')])]"/>
     </record>
 </odoo> 
