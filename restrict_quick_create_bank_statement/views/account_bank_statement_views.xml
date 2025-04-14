@@ -20,6 +20,7 @@
                 <attribute name="readonly">1</attribute>
             </xpath>
 
+            <!-- Ocultar completamente la creación de líneas -->
             <xpath expr="//notebook//page//field[@name='line_ids']" position="attributes">
                 <attribute name="options">{'no_create': True}</attribute>
             </xpath>
@@ -29,14 +30,17 @@
                 <attribute name="create">0</attribute>
                 <attribute name="edit">0</attribute>
                 <attribute name="delete">0</attribute>
+                <attribute name="editable">bottom</attribute>
             </xpath>
 
-            <!-- Agregar atributos para usuarios con permisos -->
+            <!-- Ocultar el botón de agregar línea en la vista tree embebida -->
+            <xpath expr="//field[@name='line_ids']/tree" position="inside">
+                <field name="user_has_accounting_rights" invisible="1"/>
+            </xpath>
+
+            <!-- Permitir acceso solo a usuarios con permisos de contabilidad -->
             <xpath expr="//field[@name='line_ids']" position="attributes">
                 <attribute name="readonly" groups="account.group_account_user">0</attribute>
-            </xpath>
-
-            <xpath expr="//notebook//page//field[@name='line_ids']" position="attributes">
                 <attribute name="options" groups="account.group_account_user">{'no_create': False}</attribute>
             </xpath>
 
@@ -46,7 +50,6 @@
                 <attribute name="delete" groups="account.group_account_user">1</attribute>
             </xpath>
 
-            <!-- Permitir creación para usuarios con permisos -->
             <field name="journal_id" position="attributes">
                 <attribute name="options" groups="account.group_account_user">{'no_create': False, 'no_create_edit': False, 'no_open': False}</attribute>
             </field>

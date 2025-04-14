@@ -17,8 +17,7 @@ class AccountBankStatement(models.Model):
     @api.model
     def create(self, vals):
         if not self.env.user.has_group('account.group_account_user'):
-            if self._context.get('quick_create'):
-                raise AccessError(_('No tiene permisos para crear registros rápidos. Por favor, contacte a su administrador.'))
+            raise AccessError(_('No tiene permisos para crear extractos bancarios. Por favor, contacte a su administrador.'))
         return super(AccountBankStatement, self).create(vals)
 
 class AccountBankStatementLine(models.Model):
@@ -37,6 +36,17 @@ class AccountBankStatementLine(models.Model):
     @api.model
     def create(self, vals):
         if not self.env.user.has_group('account.group_account_user'):
-            if self._context.get('quick_create'):
-                raise AccessError(_('No tiene permisos para crear líneas rápidas. Por favor, contacte a su administrador.'))
-        return super(AccountBankStatementLine, self).create(vals) 
+            raise AccessError(_('No tiene permisos para crear líneas de extracto bancario. Por favor, contacte a su administrador.'))
+        return super(AccountBankStatementLine, self).create(vals)
+
+    @api.multi
+    def write(self, vals):
+        if not self.env.user.has_group('account.group_account_user'):
+            raise AccessError(_('No tiene permisos para modificar líneas de extracto bancario. Por favor, contacte a su administrador.'))
+        return super(AccountBankStatementLine, self).write(vals)
+
+    @api.multi
+    def unlink(self):
+        if not self.env.user.has_group('account.group_account_user'):
+            raise AccessError(_('No tiene permisos para eliminar líneas de extracto bancario. Por favor, contacte a su administrador.'))
+        return super(AccountBankStatementLine, self).unlink() 
