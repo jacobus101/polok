@@ -22,7 +22,6 @@ class AccountBankStatementLine(models.Model):
 
         if original_len != len(counterpart_aml_dicts):
             reconciled_skipped = original_len - len(counterpart_aml_dicts)
-            _logger = self.env['ir.logging']
             _logger.info(f"[ReconciliationSafe] {reconciled_skipped} líneas ya estaban conciliadas y fueron ignoradas.")
 
         # Si no hay nada para conciliar, no hacemos nada
