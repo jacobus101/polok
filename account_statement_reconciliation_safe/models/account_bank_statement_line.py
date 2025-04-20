@@ -1,5 +1,8 @@
 from odoo import models, _
 from odoo.exceptions import UserError
+import logging
+
+_logger = logging.getLogger(__name__)
 
 class AccountBankStatementLine(models.Model):
     _inherit = 'account.bank.statement.line'
