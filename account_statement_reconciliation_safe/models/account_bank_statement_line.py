@@ -1,8 +1,5 @@
 from odoo import models, _
 from odoo.exceptions import UserError
-import logging
-
-_logger = logging.getLogger(__name__)
 
 class AccountBankStatementLine(models.Model):
     _inherit = 'account.bank.statement.line'
@@ -21,9 +18,7 @@ class AccountBankStatementLine(models.Model):
         ]
 
         if original_len != len(counterpart_aml_dicts):
-            reconciled_skipped = original_len - len(counterpart_aml_dicts)
-            _logger.info(f"[ReconciliationSafe] {reconciled_skipped} líneas ya estaban conciliadas y fueron ignoradas.")
-
+            reconciled_skipped = original_len - len(counterpart_aml_dicts)        
         # Si no hay nada para conciliar, no hacemos nada
         if not counterpart_aml_dicts and not new_aml_dicts and not payment_aml_rec:
             return self.env['account.move']  # No hay nada por hacer
