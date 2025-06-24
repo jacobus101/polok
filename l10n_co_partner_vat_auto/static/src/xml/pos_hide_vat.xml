@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="hide_fields_templates" xml:space="preserve">
+
+    <!-- Extendemos la vista de edición de cliente -->
+    <t t-extend="ClientDetailsEdit">
+
+        <!-- Ocultar campo VAT -->
+        <t t-jquery="div.client-detail:has(input[name='vat'])" t-operation="replace"/>
+
+        <!-- Ocultar campo Ciudad -->
+        <t t-jquery="div.client-detail:has(input[name='city'])" t-operation="replace"/>
+
+        <!-- Ocultar campo Código postal -->
+        <t t-jquery="div.client-detail:has(input[name='zip'])" t-operation="replace"/>
+
+        <!-- Ocultar campo Código de barras -->
+        <t t-jquery="div.client-detail:has(input[name='barcode'])" t-operation="replace"/>
+        <t t-jquery="div.client-detail:has(input[name='ean13'])" t-operation="replace"/>
+
+    </t>
+
+</templates>

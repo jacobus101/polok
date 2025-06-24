@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <template id="assets" inherit_id="point_of_sale.assets" name="POS extra assets">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/l10n_co_partner_vat_auto/static/src/js/pos_partner_fields.js"/>
+            <script type="text/javascript" src="/l10n_co_partner_vat_auto/static/src/js/pos_partner_vat.js"/>
+            <script type="text/javascript" src="/l10n_co_partner_vat_auto/static/src/js/dv_toggle_by_doc_type.js"/>
+            <script type="text/javascript" src="/l10n_co_partner_vat_auto/static/src/js/dv_utils.js"/>
+            <script type="text/javascript" src="/l10n_co_partner_vat_auto/static/src/js/pos_set_default_country.js"/>
+        </xpath>
+    </template>    
+</odoo> 

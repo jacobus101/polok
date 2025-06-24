@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<templates id="template" xml:space="preserve">
+    <t t-extend="ClientDetailsEdit">
+        <t t-jquery="div.client-details-right:first" t-operation="append">
+
+            <div class='client-detail'>
+                <span class='label'>Doc. No.</span>
+                <input class='detail' name='identification_document' type='text'
+                       placeholder='123456789'
+                       t-att-value='partner.identification_document || ""'/>
+            </div>
+
+            <div class='client-detail check-digit-container'
+                 t-attf-style="{{ partner.l10n_co_document_type === 'rut' ? '' : 'display:none;' }}">
+                <span class='label'>DV</span>
+                <input class='detail' name='check_digit' type='text'
+                       maxlength="1"
+                       placeholder='0'
+                       t-att-value='partner.check_digit || ""'/>
+            </div>
+            
+        </t>
+    </t>
+</templates>
