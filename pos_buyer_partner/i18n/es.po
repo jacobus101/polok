@@ -1,0 +1,32 @@
+# Translation for Spanish (Colombia)
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) 2025   YOUR COMPANY
+# This file is distributed under the same license as the module.
+# FIRST AUTHOR <EMAIL@ADDRESS>, 2025.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: pos_buyer_partner 12.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-06-24 00:00+0000\n"
+"PO-Revision-Date: 2025-06-24 00:00-0500\n"
+"Language: es\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#. module: pos_buyer_partner
+#: model:ir.model.fields,field_description:pos_buyer_partner.field_pos_order__buyer_partner_id
+msgid "Buyer"
+msgstr "Comprador"
+
+#. module: pos_buyer_partner
+#: python:odoo.addons.pos_buyer_partner.models.pos_session:_popup
+msgid "Orders without Buyer"
+msgstr "Órdenes sin comprador"
+
+#. module: pos_buyer_partner
+#: model_terms:ir.actions.act_window,name:pos_buyer_partner.action_pos_session_buyer_check_wizard
+msgid "Orders without buyer"
+msgstr "Órdenes sin comprador"

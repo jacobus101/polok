@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_pos_session_buyer_check_wizard_form" model="ir.ui.view">
+        <field name="name">pos.session.buyer.check.wizard.form</field>
+        <field name="model">pos.session.buyer.check.wizard</field>
+        <field name="arch" type="xml">
+            <form string="Pedidos sin comprador">
+                <group>
+                    <!-- Etiqueta correcta apuntando al campo -->
+                    <label for="missing_order_count"
+                           string="Pedidos sin comprador:"
+                           class="oe_inline"/>
+                    <!-- Mostramos el número sin etiqueta adicional -->
+                    <field name="missing_order_count"
+                           class="oe_inline"
+                           nolabel="1"/>
+                </group>
+
+                <footer>
+                    <button name="action_close_anyway"
+                            type="object"
+                            string="Cerrar de todas formas"
+                            class="btn-primary"/>
+                    <button string="Cancelar"
+                            special="cancel"
+                            class="btn-default"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+</odoo>
