@@ -1,4 +1,4 @@
-# models/pos_partner_patch.py
+# -*- coding: utf-8 -*-
 from odoo import models, api
 import logging
 
@@ -9,43 +9,43 @@ class ResPartnerPosPatch(models.Model):
 
     @staticmethod
     def _co_compute_vat(vals):
-        """Añade VAT en vals si falta."""
         if not isinstance(vals, dict):
-            return vals                # defensivo: ignorar valores atípicos
+            return vals
         if vals.get('vat'):
-            return vals                # ya está
+            return vals
         doc = vals.get('identification_document')
-        _logger.info("Valor de doc: %s", doc)
         if not doc:
             return vals
         code = vals.get('l10n_co_document_type')
-        _logger.info("Valor de code: %s", code)
         if code == 'rut' and vals.get('check_digit'):
             vals['vat'] = 'CO%s%s' % (doc, vals['check_digit'])
         else:
             vals['vat'] = 'CO%s' % doc
         return vals
 
-    # helpers para normalizar el argumento -------------------------------
     def _normalize(self, data):
-        """Siempre devuelve una lista de dicts."""
         if not data:
             return []
         if isinstance(data, dict):
             return [data]
         if isinstance(data, list):
             return data
-        # Caso extremo: string u otro tipo
         return []
 
     @api.model
     def create_from_ui(self, partners):
         for p in self._normalize(partners):
             self._co_compute_vat(p)
-        return super().create_from_ui(partners)
+        return super(ResPartnerPosPatch, self.with_context(from_pos=True).sudo()).create_from_ui(partners)
 
     @api.model
     def write_from_ui(self, partners):
         for p in self._normalize(partners):
             self._co_compute_vat(p)
-        return super().write_from_ui(partners)
+        return super(ResPartnerPosPatch, self.with_context(from_pos=True).sudo()).write_from_ui(partners)
+
+    @api.multi
+    def write(self, vals):
+        if self.env.context.get('from_pos'):
+            return super(ResPartnerPosPatch, self.sudo()).write(vals)
+        return super(ResPartnerPosPatch, self).write(vals)
