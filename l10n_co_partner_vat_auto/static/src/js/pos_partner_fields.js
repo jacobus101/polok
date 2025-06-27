@@ -5,6 +5,9 @@ odoo.define('l10n_co_partner_vat_auto.pos_partner_fields', function (require) {
     const fieldNames = [
         'identification_document',
         'check_digit',
+        'vat',
+        'country_id',
+        'type_document_identification_id',
     ];
 
     // Agregar los campos personalizados al modelo partner

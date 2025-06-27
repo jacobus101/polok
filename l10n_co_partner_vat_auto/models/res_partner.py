@@ -60,3 +60,5 @@ class ResPartner(models.Model):
         suma = sum(int(vat[i]) * prime[len(vat) - 2 - i] for i in range(len(vat) - 1))
         expected_dv = 11 - (suma % 11) if suma % 11 > 1 else suma % 11
         return str(expected_dv) == vat[-1]
+    
+    

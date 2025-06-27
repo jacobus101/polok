@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <templates id="hide_fields_templates" xml:space="preserve">
 
-    <!-- Extendemos la vista de edición de cliente -->
+    Extendemos la vista de edición de cliente
     <t t-extend="ClientDetailsEdit">
 
         <!-- Ocultar campo VAT -->

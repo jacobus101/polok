@@ -20,5 +20,8 @@
             </div>
             
         </t>
+        <t t-jquery="div.client-detail:has(select[name='l10n_co_document_type']) span.label" t-operation="replace">
+            <span class="label">Tipo doc</span>
+        </t>
     </t>
 </templates>

@@ -17,9 +17,9 @@ odoo.define('l10n_co_partner_vat_auto.set_default_country', function (require) {
             $countrySelect.attr('disabled', true);
 
             // --- Establecer Departamento por defecto
-            const defaultDepartment = this.pos.departments?.find(d => d.name.includes('D.C.'));
-            const $departmentSelect = this.$('select[name="department_id"]');
-            if (defaultDepartment && !partner.department_id) {
+            const defaultDepartment = this.pos.states?.find(d => d.name.includes('D.C.'));
+            const $departmentSelect = this.$('select[name="state_id"]');
+            if (defaultDepartment && !partner.state_id) {
                 $departmentSelect.val(defaultDepartment.id);
             }
 
