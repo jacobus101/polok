@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        
+        <!-- Extender la vista de configuración del POS -->
+        <record id="pos_config_view_form_inherit_customer_validation" model="ir.ui.view">
+            <field name="name">pos.config.form.inherit.customer.validation</field>
+            <field name="model">pos.config</field>
+            <field name="inherit_id" ref="point_of_sale.pos_config_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//field[@name='module_pos_restaurant']" position="after">
+                    <separator string="Validación de Clientes" colspan="2"/>
+                    <field name="require_email_for_customers" 
+                           string="Requerir Email para Clientes"
+                           help="Si está activado, se requerirá email para todos los clientes del POS"/>
+                    <field name="require_vat_for_customers" 
+                           string="Requerir NIT/Documento para Clientes"
+                           help="Si está activado, se requerirá NIT/Documento para todos los clientes del POS"/>
+                    <field name="require_identification_type_for_customers" 
+                           string="Requerir Tipo de Identificación para Clientes"
+                           help="Si está activado, se requerirá tipo de identificación para todos los clientes del POS"/>
+                    <field name="require_regime_for_customers" 
+                           string="Requerir Régimen Fiscal para Clientes"
+                           help="Si está activado, se requerirá régimen fiscal para todos los clientes del POS"/>
+                    <field name="require_liability_for_customers" 
+                           string="Requerir Responsabilidad Fiscal para Clientes"
+                           help="Si está activado, se requerirá responsabilidad fiscal para todos los clientes del POS"/>
+                    <field name="require_municipality_for_customers" 
+                           string="Requerir Municipio para Clientes"
+                           help="Si está activado, se requerirá municipio para todos los clientes del POS"/>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="group_show_invoice_button" model="res.groups">
+        <field name="name">POS / Mostrar botón de Facturar en Orden POS</field>
+        <field name="category_id" ref="base.module_category_hidden"/>
+        <field name="comment">Permite ver el botón 'Invoice' en la vista pos.order.form.</field>
+    </record>
+
+    <record id="base.group_system" model="res.groups">
+        <field name="implied_ids" eval="[(4, ref('pos_hide_invoice_button.group_show_invoice_button'))]"/>
+    </record>
+</odoo>

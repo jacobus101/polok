@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <record id="view_move_form_inherit_reset_draft_security" model="ir.ui.view">
+        <field name="name">account.move.form.reset.draft.security.checkbox</field>
+        <field name="model">account.move</field>
+        <field name="inherit_id" ref="account.view_move_form"/>
+        <field name="arch" type="xml">
+            <!-- Asegura que el campo esté en la vista para que 'attrs' funcione -->
+            <xpath expr="//sheet" position="inside">
+                <field name="can_user_reset_to_draft" invisible="1"/>
+            </xpath>
+            <!-- Oculta el botón a quienes no tengan la casilla activa -->
+            <xpath expr="//header/button[@name='button_draft']" position="attributes">
+                <attribute name="attrs">{'invisible': [('can_user_reset_to_draft','=',False)]}</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
