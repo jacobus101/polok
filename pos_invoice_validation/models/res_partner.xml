@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- No se necesita vista específica, solo el modelo Python -->
+    </data>
+</odoo>

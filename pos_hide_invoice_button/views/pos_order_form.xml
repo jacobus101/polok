@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<odoo>
+    <!-- Heredamos la vista del POS para añadir restricción por grupos
+         al botón 'Invoice' (name="action_pos_order_invoice"). -->
+    <record id="view_pos_order_form_hide_invoice" model="ir.ui.view">
+        <field name="name">pos.order.form.hide.invoice.button</field>
+        <field name="model">pos.order</field>
+        <field name="inherit_id" ref="point_of_sale.view_pos_pos_form"/>
+        <field name="arch" type="xml">
+            <!-- Añadimos atributo 'groups' para que SOLO lo vean los del grupo -->
+            <xpath expr="//form//button[@name='action_pos_order_invoice']" position="attributes">
+                <attribute name="groups">pos_hide_invoice_button.group_show_invoice_button</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>

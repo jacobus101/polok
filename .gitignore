@@ -1,0 +1,43 @@
+# Excluir módulos de jorels
+addons/l10n_co_edi_jorels/
+addons/l10n_co_edi_jorels_pos/
+
+# Excluir carpeta git embebida
+git/
+
+# Archivos temporales
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.venv/
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Archivos de configuración local
+.env
+config/local.conf
+
+# Logs
+*.log
+
+# Archivos de base de datos
+*.db
+*.sqlite3
+
+# Archivos de Docker
+docker-compose.override.yml
+
+# Archivos de IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
